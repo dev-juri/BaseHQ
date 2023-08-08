@@ -21,7 +21,7 @@ interface BottomAppBar {
     var showContent: Boolean
 }
 
-open class BaseFragment : Fragment(), BottomAppBar {
+open class BaseFragment(res: Int) : Fragment(res), BottomAppBar {
     override var showContent: Boolean = false
 }
 
