@@ -1,16 +1,37 @@
 package com.oluwafemi.basehq.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.oluwafemi.basehq.databinding.ActivityMainBinding
+import com.oluwafemi.basehq.utils.BottomAppBar
+import com.oluwafemi.basehq.utils.setGone
+import com.oluwafemi.basehq.utils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
+
+    private val fragmentLifecycleCallbacks = object : FragmentManager.FragmentLifecycleCallbacks() {
+        override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
+            super.onFragmentResumed(fm, f)
+
+            (f as? BottomAppBar)?.apply {
+                if (f.showContent) {
+                    binding.bottomAppBar.setVisible()
+                    binding.goToCart.setVisible()
+                } else {
+                    binding.bottomAppBar.setGone()
+                    binding.goToCart.setGone()
+                }
+            }
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,16 +39,16 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        viewModel.categories.observe(this) {
-            if (it.isNotEmpty()) {
-                binding.helloText.text = "${binding.helloText.text} \n\n $it \n\n"
-            }
-        }
+        (this as FragmentActivity).supportFragmentManager.registerFragmentLifecycleCallbacks(
+            fragmentLifecycleCallbacks,
+            true
+        )
+    }
 
-        viewModel.products.observe(this) {
-            if (it.isNotEmpty()) {
-                binding.helloText.text = "${binding.helloText.text} \n\n $it \n\n"
-            }
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        (this as FragmentActivity).supportFragmentManager.unregisterFragmentLifecycleCallbacks(
+            fragmentLifecycleCallbacks
+        )
     }
 }

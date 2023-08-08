@@ -13,7 +13,7 @@ data class DomainProduct(
 )
 
 data class DomainCategory(
-    val category: String
+    val category: Category
 )
 
 data class DomainCart(

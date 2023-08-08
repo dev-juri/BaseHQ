@@ -7,6 +7,7 @@ import com.oluwafemi.basehq.data.local.DbCart
 import com.oluwafemi.basehq.data.local.DbCategories
 import com.oluwafemi.basehq.data.local.DbProduct
 import com.oluwafemi.basehq.data.remote.Product
+import com.oluwafemi.basehq.data.remote.RemoteCategory
 
 @JvmName("ProductExt1")
 fun List<Product>.toDbModel(): Array<DbProduct> {
@@ -42,16 +43,16 @@ fun List<DbProduct>.fromDbModel(): List<DomainProduct> {
 fun List<DbCategories>.fromDbModel(): List<DomainCategory> {
     return map {
         DomainCategory(
-            category = it.category.toString()
+            category = it.category
         )
     }
 }
 
 @JvmName("CategoryExt2")
-fun DomainCategory.toDbModel(): DbCategories {
+fun RemoteCategory.toDbModel(): DbCategories {
     return DbCategories(
         id = 0,
-        category = Category.fromValue(this.category)
+        category = this.category
     )
 }
 

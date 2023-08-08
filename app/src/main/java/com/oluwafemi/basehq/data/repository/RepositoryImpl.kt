@@ -7,6 +7,7 @@ import com.oluwafemi.basehq.data.domain.DomainProduct
 import com.oluwafemi.basehq.data.local.BaseDAO
 import com.oluwafemi.basehq.data.remote.BaseService
 import com.oluwafemi.basehq.data.remote.Product
+import com.oluwafemi.basehq.data.remote.RemoteCategory
 import com.oluwafemi.basehq.utils.Category
 import com.oluwafemi.basehq.utils.NetworkState
 import com.oluwafemi.basehq.utils.fromDbModel
@@ -43,7 +44,7 @@ class RepositoryImpl @Inject constructor(
                 val response = result.body()
                 if (response?.size!! > 0) {
                     response.forEach {
-                        local.insertCategories(DomainCategory(it).toDbModel())
+                        local.insertCategories(RemoteCategory(Category.fromValue(it)).toDbModel())
                     }
                 }
                 NetworkState.Success(response)

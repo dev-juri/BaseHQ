@@ -4,6 +4,30 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.View
+import androidx.fragment.app.Fragment
+
+// Utility for Views
+
+fun View.setVisible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.setGone() {
+    this.visibility = View.GONE
+}
+
+interface BottomAppBar {
+    var showContent: Boolean
+}
+
+open class BaseFragment : Fragment(), BottomAppBar {
+    override var showContent: Boolean = false
+}
+
+open class BottomAppTopLevelFragment(res: Int) : Fragment(res), BottomAppBar {
+    override var showContent: Boolean = true
+}
 
 enum class Category(val value: String) {
     Electronics("electronics"),

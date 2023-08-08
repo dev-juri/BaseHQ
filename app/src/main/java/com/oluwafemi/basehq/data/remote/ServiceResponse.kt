@@ -1,5 +1,7 @@
 package com.oluwafemi.basehq.data.remote
 
+import com.oluwafemi.basehq.utils.Category
+
 data class Product(
     val id: Long,
     val title: String,
@@ -8,6 +10,10 @@ data class Product(
     val category: String,
     val image: String,
     val rating: Rating
+)
+
+data class RemoteCategory(
+    val category: Category
 )
 
 data class Rating(
