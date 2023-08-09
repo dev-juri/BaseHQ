@@ -18,6 +18,9 @@ interface BaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addToCart(vararg cart: DbCart)
 
+    @Query("SELECT * FROM DbCart")
+    fun getCartItems(): LiveData<List<DbCart>>
+
     @Query("SELECT * FROM DbProducts WHERE id=:key")
     suspend fun getProductWithId(key: Long): DbProduct
 
@@ -28,5 +31,5 @@ interface BaseDAO {
     fun getCategories(): LiveData<List<DbCategories>>
 
     @Query("SELECT * FROM DbProducts WHERE category=:category")
-    fun getFIlteredProducts(category: Category): LiveData<List<DbProduct>>
+    fun getFilteredProducts(category: Category): LiveData<List<DbProduct>>
 }

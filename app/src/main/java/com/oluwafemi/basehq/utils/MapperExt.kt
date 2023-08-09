@@ -75,7 +75,19 @@ fun List<DbCart>.fromDbModel(): List<DomainCart> {
     return map {
         DomainCart(
             productId = it.productId,
-            quantity = it.quantity
+            quantity = it.quantity,
+            priceOfProduct = it.priceOfProduct,
+            productName = it.productName
         )
     }
+}
+
+@JvmName("CartExt2")
+fun DomainCart.toDbModel(): DbCart {
+    return DbCart(
+        productId = this.productId,
+        quantity = this.quantity,
+        priceOfProduct = this.priceOfProduct,
+        productName = this.productName
+    )
 }

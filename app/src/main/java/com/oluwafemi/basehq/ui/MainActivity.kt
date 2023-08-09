@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.activityViewModels
 import com.oluwafemi.basehq.databinding.ActivityMainBinding
 import com.oluwafemi.basehq.utils.BottomAppBar
 import com.oluwafemi.basehq.utils.setGone
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val viewModel: SharedViewModel by activityViewModels()
 
     private val fragmentLifecycleCallbacks = object : FragmentManager.FragmentLifecycleCallbacks() {
         override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
@@ -43,6 +45,13 @@ class MainActivity : AppCompatActivity() {
             fragmentLifecycleCallbacks,
             true
         )
+
+        viewModel.cart.observe(this) {
+            if (it.isNotEmpty()) {
+            } else {
+
+            }
+        }
     }
 
     override fun onDestroy() {

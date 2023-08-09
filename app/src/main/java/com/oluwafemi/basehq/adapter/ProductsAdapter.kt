@@ -20,6 +20,7 @@ class ProductsAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: DomainProduct, context: Context) {
             binding.productName.text = product.title
+            binding.productPrice.text = "${product.price}"
 
             Glide.with(context).load(product.image).centerCrop().into(binding.img)
 

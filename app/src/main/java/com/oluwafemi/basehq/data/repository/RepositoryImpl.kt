@@ -2,9 +2,11 @@ package com.oluwafemi.basehq.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import com.oluwafemi.basehq.data.domain.DomainCart
 import com.oluwafemi.basehq.data.domain.DomainCategory
 import com.oluwafemi.basehq.data.domain.DomainProduct
 import com.oluwafemi.basehq.data.local.BaseDAO
+import com.oluwafemi.basehq.data.local.DbCart
 import com.oluwafemi.basehq.data.remote.BaseService
 import com.oluwafemi.basehq.data.remote.Product
 import com.oluwafemi.basehq.data.remote.RemoteCategory
@@ -66,10 +68,18 @@ class RepositoryImpl @Inject constructor(
         }
 
     override fun fetchFilteredProducts(category: Category): LiveData<List<DomainProduct>> =
-        local.getFIlteredProducts(category).map {
+        local.getFilteredProducts(category).map {
             it.fromDbModel()
         }
 
     override suspend fun fetchProductWithId(key: Long): DomainProduct =
         local.getProductWithId(key).fromDbModel()
+
+    override suspend fun addToCart(cart: DbCart) {
+        local.addToCart(cart)
+    }
+
+    override fun fetchCartItems(): LiveData<List<DomainCart>> = local.getCartItems().map {
+        it.fromDbModel()
+    }
 }

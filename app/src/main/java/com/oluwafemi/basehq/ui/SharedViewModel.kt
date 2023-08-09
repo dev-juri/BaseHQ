@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.oluwafemi.basehq.data.domain.DomainCart
 import com.oluwafemi.basehq.data.domain.DomainProduct
 import com.oluwafemi.basehq.data.repository.Repository
 import com.oluwafemi.basehq.utils.Category
 import com.oluwafemi.basehq.utils.NetworkState
+import com.oluwafemi.basehq.utils.toDbModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,6 +27,7 @@ class SharedViewModel @Inject constructor(private val repository: Repository) : 
     val filteredProduct: LiveData<List<DomainProduct>> get() = _filteredProduct
 
     val categories = repository.fetchSavedCategories()
+    val cart = repository.fetchCartItems()
 
     init {
         fetchCategories()
@@ -82,8 +85,10 @@ class SharedViewModel @Inject constructor(private val repository: Repository) : 
         }
     }
 
-    fun resetSelectedItem() {
-        _selectedItem.postValue(null)
+    fun addItemToCart(cart: DomainCart) {
+        viewModelScope.launch {
+            repository.addToCart(cart.toDbModel())
+        }
     }
 
     fun resetState() {

@@ -34,6 +34,7 @@ class CategoryFragment : BottomAppTopLevelFragment(R.layout.fragment_category),
         adapter = CategoriesAdapter(this)
         binding.categoriesRecycler.adapter = adapter
 
+
     }
 
     private fun observeData() {

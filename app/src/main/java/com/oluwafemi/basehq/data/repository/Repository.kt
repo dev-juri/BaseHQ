@@ -1,8 +1,10 @@
 package com.oluwafemi.basehq.data.repository
 
 import androidx.lifecycle.LiveData
+import com.oluwafemi.basehq.data.domain.DomainCart
 import com.oluwafemi.basehq.data.domain.DomainCategory
 import com.oluwafemi.basehq.data.domain.DomainProduct
+import com.oluwafemi.basehq.data.local.DbCart
 import com.oluwafemi.basehq.utils.Category
 import com.oluwafemi.basehq.utils.NetworkState
 
@@ -19,5 +21,9 @@ interface Repository {
     fun fetchFilteredProducts(category: Category): LiveData<List<DomainProduct>>
 
     suspend fun fetchProductWithId(key: Long): DomainProduct
+
+    suspend fun addToCart(cart: DbCart)
+
+    fun fetchCartItems(): LiveData<List<DomainCart>>
 
 }

@@ -18,7 +18,9 @@ data class DbProduct(
 @Entity(tableName = "DbCart")
 data class DbCart(
     @PrimaryKey(autoGenerate = false) val productId: Long,
-    val quantity: Long
+    val quantity: Long,
+    val priceOfProduct: Double,
+    val productName: String
 )
 
 @Entity(tableName = "DbCategories")
