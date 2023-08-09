@@ -41,6 +41,10 @@ class CategoryFragment : BottomAppTopLevelFragment(R.layout.fragment_category),
         adapter = CategoriesAdapter(requireContext(), this)
         binding.categoriesRecycler.adapter = adapter
 
+        binding.tryAgain.setOnClickListener {
+            fetchRemoteData()
+        }
+
     }
 
     private fun observeData() {
@@ -49,6 +53,11 @@ class CategoryFragment : BottomAppTopLevelFragment(R.layout.fragment_category),
                 adapter.submitList(it)
             } else {
                 adapter.submitList(emptyList())
+                if (!isOnline(requireContext())) {
+                    binding.categoryEmptyState.setVisible()
+                } else {
+                    binding.categoryEmptyState.setGone()
+                }
             }
         }
 
@@ -62,7 +71,7 @@ class CategoryFragment : BottomAppTopLevelFragment(R.layout.fragment_category),
                         val snackBar = Snackbar.make(
                             binding.root,
                             if (isOnline(requireContext())) "Something went wrong, please try again" else "No InternetConnection",
-                            Snackbar.LENGTH_INDEFINITE
+                            Snackbar.LENGTH_LONG
                         )
                         if (isOnline(requireContext())) {
                             snackBar.setAction("Try Again") { fetchRemoteData() }.show()

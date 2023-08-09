@@ -21,9 +21,8 @@ class CartAdapter(
         fun bind(cartItem: DomainCart, context: Context) {
             binding.productName.text = cartItem.productName
             binding.productPrice.text = "$${cartItem.priceOfProduct}"
-
+            binding.productQtd.text = "Qtd: ${cartItem.quantity}"
             Glide.with(context).load(cartItem.image).centerCrop().into(binding.img)
-
         }
 
         companion object {

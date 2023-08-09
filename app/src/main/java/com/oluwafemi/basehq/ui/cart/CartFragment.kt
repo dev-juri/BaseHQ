@@ -30,12 +30,15 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), RecyclerItemClickList
             if (cartItem.isNotEmpty()) {
                 adapter.submitList(cartItem)
                 binding.emptyStateText.setGone()
-
+                total = 0.0
                 cartItem.forEach {
                     total += it.priceOfProduct * it.quantity
                 }
                 binding.total.text = "Total = $${total}"
+                binding.total.setVisible()
             } else {
+                total = 0.0
+                binding.total.setGone()
                 binding.emptyStateText.setVisible()
                 adapter.submitList(emptyList())
             }
