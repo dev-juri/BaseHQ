@@ -18,4 +18,6 @@ interface Repository {
 
     fun fetchFilteredProducts(category: Category): LiveData<List<DomainProduct>>
 
+    suspend fun fetchProductWithId(key: Long): DomainProduct
+
 }

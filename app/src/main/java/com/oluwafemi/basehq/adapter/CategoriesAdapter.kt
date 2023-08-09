@@ -9,10 +9,12 @@ import com.oluwafemi.basehq.data.domain.DomainCategory
 import com.oluwafemi.basehq.databinding.CategoryListItemBinding
 import com.oluwafemi.basehq.utils.Category
 
-class CategoriesAdapter :
+class CategoriesAdapter(
+    private val clickListener: RecyclerItemClickListener
+) :
     ListAdapter<DomainCategory, CategoriesAdapter.CategoryViewHolder>(CategoryDiffUtilCallback) {
 
-    class CategoryViewHolder constructor(private var binding: CategoryListItemBinding) :
+    class CategoryViewHolder constructor(val binding: CategoryListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(category: DomainCategory) {
             binding.category.text = Category.toValue(category.category)
@@ -45,5 +47,9 @@ class CategoriesAdapter :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = getItem(position)
         holder.bind(category)
+
+        holder.binding.parent.setOnClickListener {
+            clickListener.onClick(category.category.value)
+        }
     }
 }

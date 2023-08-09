@@ -39,6 +39,20 @@ fun List<DbProduct>.fromDbModel(): List<DomainProduct> {
     }
 }
 
+@JvmName("ProductExt3")
+fun DbProduct.fromDbModel(): DomainProduct {
+    return DomainProduct(
+        id = this.id,
+        title = this.title,
+        price = this.price,
+        description = this.description,
+        category = this.category,
+        image = this.image,
+        rating = this.rating
+    )
+
+}
+
 @JvmName("CategoryExt1")
 fun List<DbCategories>.fromDbModel(): List<DomainCategory> {
     return map {

@@ -69,4 +69,7 @@ class RepositoryImpl @Inject constructor(
         local.getFIlteredProducts(category).map {
             it.fromDbModel()
         }
+
+    override suspend fun fetchProductWithId(key: Long): DomainProduct =
+        local.getProductWithId(key).fromDbModel()
 }

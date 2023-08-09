@@ -10,10 +10,13 @@ import com.bumptech.glide.Glide
 import com.oluwafemi.basehq.data.domain.DomainProduct
 import com.oluwafemi.basehq.databinding.ProductListItemBinding
 
-class ProductsAdapter(private val context: Context) :
+class ProductsAdapter(
+    private val clickListener: RecyclerItemClickListener,
+    private val context: Context
+) :
     ListAdapter<DomainProduct, ProductsAdapter.ProductViewHolder>(ProductDiffUtilCallback) {
 
-    class ProductViewHolder constructor(private val binding: ProductListItemBinding) :
+    class ProductViewHolder constructor(val binding: ProductListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: DomainProduct, context: Context) {
             binding.productName.text = product.title
@@ -50,5 +53,9 @@ class ProductsAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = getItem(position)
         holder.bind(product, context)
+
+        holder.binding.parent.setOnClickListener {
+            clickListener.onClick(product.id.toString())
+        }
     }
 }

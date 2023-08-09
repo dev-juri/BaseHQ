@@ -18,6 +18,9 @@ interface BaseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addToCart(vararg cart: DbCart)
 
+    @Query("SELECT * FROM DbProducts WHERE id=:key")
+    suspend fun getProductWithId(key: Long): DbProduct
+
     @Query("SELECT * FROM DbProducts")
     fun getProducts(): LiveData<List<DbProduct>>
 
