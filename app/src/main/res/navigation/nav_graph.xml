@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_categoryFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/productsFragment"
@@ -26,4 +29,8 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.oluwafemi.basehq.ui.products.ProductDetailsFragment"
         android:label="ProductDetailsFragment" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.oluwafemi.basehq.ui.cart.CartFragment"
+        android:label="CartFragment" />
 </navigation>

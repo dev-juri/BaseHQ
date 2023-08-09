@@ -2,8 +2,10 @@ package com.oluwafemi.basehq.ui.categories
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.oluwafemi.basehq.R
 import com.oluwafemi.basehq.adapter.CategoriesAdapter
@@ -31,15 +33,23 @@ class CategoryFragment : BottomAppTopLevelFragment(R.layout.fragment_category),
         fetchRemoteData()
         observeData()
 
-        adapter = CategoriesAdapter(this)
-        binding.categoriesRecycler.adapter = adapter
+        (activity as AppCompatActivity).findViewById<FloatingActionButton>(R.id.go_to_cart)
+            .setOnClickListener {
+                findNavController().navigate(R.id.action_categoryFragment_to_cartFragment)
+            }
 
+        adapter = CategoriesAdapter(requireContext(), this)
+        binding.categoriesRecycler.adapter = adapter
 
     }
 
     private fun observeData() {
         viewModel.categories.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            if (it.isNotEmpty()) {
+                adapter.submitList(it)
+            } else {
+                adapter.submitList(emptyList())
+            }
         }
 
         viewModel.state.observe(viewLifecycleOwner) {

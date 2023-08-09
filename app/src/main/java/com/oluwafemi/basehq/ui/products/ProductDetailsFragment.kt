@@ -27,7 +27,7 @@ class ProductDetailsFragment : BaseFragment(R.layout.fragment_product_details) {
             if (it != null) {
                 item = it
                 binding.productTitle.text = it.title
-                binding.productPrice.text = "${it.price}"
+                binding.productPrice.text = "$${it.price}"
                 binding.productDesc.text = it.description
                 Glide.with(requireContext()).load(it.image).centerCrop().into(binding.image)
                 binding.ratingBar.rating = it.rating.toFloat()
@@ -49,6 +49,7 @@ class ProductDetailsFragment : BaseFragment(R.layout.fragment_product_details) {
                 val cart = DomainCart(
                     productId = item.id,
                     productName = item.title,
+                    image = item.image,
                     quantity = qtd.toLong(),
                     priceOfProduct = item.price
                 )

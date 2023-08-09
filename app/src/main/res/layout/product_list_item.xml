@@ -16,37 +16,37 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:contentDescription="@string/product_image"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/product_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="16dp"
             android:textAlignment="textStart"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img"
+            app:layout_constraintTop_toTopOf="@id/img"
             tools:text="Mercedez Benz GLA ABCDHA" />
 
         <TextView
             android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:textSize="18sp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/product_name"
             app:layout_constraintTop_toBottomOf="@id/product_name"
             tools:text="$75" />
 
@@ -56,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:max="5"
-            android:layout_marginStart="8dp"
             android:progressTint="@color/black"
             android:numStars="5"
             android:stepSize="0.1"
@@ -64,7 +63,7 @@
             android:scaleY="0.5"
             android:transformPivotY="0dp"
             android:transformPivotX="0dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/product_price"
             app:layout_constraintTop_toBottomOf="@id/product_price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

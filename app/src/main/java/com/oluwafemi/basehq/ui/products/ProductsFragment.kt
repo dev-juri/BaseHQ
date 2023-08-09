@@ -11,6 +11,8 @@ import com.oluwafemi.basehq.databinding.FragmentProductsBinding
 import com.oluwafemi.basehq.ui.SharedViewModel
 import com.oluwafemi.basehq.utils.BaseFragment
 import com.oluwafemi.basehq.utils.Category
+import com.oluwafemi.basehq.utils.setGone
+import com.oluwafemi.basehq.utils.setVisible
 import com.oluwafemi.basehq.utils.viewBinding
 
 class ProductsFragment : BaseFragment(R.layout.fragment_products), RecyclerItemClickListener {
@@ -27,8 +29,12 @@ class ProductsFragment : BaseFragment(R.layout.fragment_products), RecyclerItemC
 
         viewModel.filteredProduct.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
+                binding.emptyStateText.setGone()
                 adapter.submitList(it)
                 binding.category.text = Category.toValue(it[0].category)
+            } else {
+                adapter.submitList(emptyList())
+                binding.emptyStateText.setVisible()
             }
         }
     }

@@ -19,6 +19,7 @@ data class DomainCategory(
 data class DomainCart(
     val productId: Long,
     val quantity: Long,
+    val image: String,
     val priceOfProduct: Double,
     val productName: String
 )

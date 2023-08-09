@@ -91,6 +91,12 @@ class SharedViewModel @Inject constructor(private val repository: Repository) : 
         }
     }
 
+    fun deleteItemWithId(id: Long) {
+        viewModelScope.launch {
+            repository.deleteItemWithId(id)
+        }
+    }
+
     fun resetState() {
         _state.postValue(null)
     }

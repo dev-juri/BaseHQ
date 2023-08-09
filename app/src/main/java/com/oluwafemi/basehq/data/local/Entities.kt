@@ -19,6 +19,7 @@ data class DbProduct(
 data class DbCart(
     @PrimaryKey(autoGenerate = false) val productId: Long,
     val quantity: Long,
+    val image: String,
     val priceOfProduct: Double,
     val productName: String
 )

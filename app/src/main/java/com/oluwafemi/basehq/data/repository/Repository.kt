@@ -26,4 +26,6 @@ interface Repository {
 
     fun fetchCartItems(): LiveData<List<DomainCart>>
 
+    suspend fun deleteItemWithId(id: Long)
+
 }

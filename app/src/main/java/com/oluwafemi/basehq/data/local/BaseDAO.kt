@@ -21,6 +21,9 @@ interface BaseDAO {
     @Query("SELECT * FROM DbCart")
     fun getCartItems(): LiveData<List<DbCart>>
 
+    @Query("DELETE FROM DbCart WHERE productId=:id")
+    suspend fun deleteItemWithId(id: Long)
+
     @Query("SELECT * FROM DbProducts WHERE id=:key")
     suspend fun getProductWithId(key: Long): DbProduct
 

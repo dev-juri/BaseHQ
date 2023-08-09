@@ -77,7 +77,8 @@ fun List<DbCart>.fromDbModel(): List<DomainCart> {
             productId = it.productId,
             quantity = it.quantity,
             priceOfProduct = it.priceOfProduct,
-            productName = it.productName
+            productName = it.productName,
+            image = it.image
         )
     }
 }
@@ -87,6 +88,7 @@ fun DomainCart.toDbModel(): DbCart {
     return DbCart(
         productId = this.productId,
         quantity = this.quantity,
+        image = this.image,
         priceOfProduct = this.priceOfProduct,
         productName = this.productName
     )

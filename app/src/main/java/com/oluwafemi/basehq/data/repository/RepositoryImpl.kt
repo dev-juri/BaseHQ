@@ -82,4 +82,8 @@ class RepositoryImpl @Inject constructor(
     override fun fetchCartItems(): LiveData<List<DomainCart>> = local.getCartItems().map {
         it.fromDbModel()
     }
+
+    override suspend fun deleteItemWithId(id: Long) {
+        local.deleteItemWithId(id)
+    }
 }
