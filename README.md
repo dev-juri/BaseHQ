@@ -6,10 +6,10 @@
 4. Display Cart.
 
 ### Screenshots
-<img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/category.jpg" width="50" height="80"/><img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/products.jpg" width="50" height="80"/><img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/details.jpg" width="50" height="80"/><img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/cart.jpg" width="50" height="80"/>
+<img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/category.jpg" width="50" height="100"/><img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/products.jpg" width="50" height="100"/><img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/details.jpg" width="50" height="100"/><img src="https://github.com/dev-juri/BaseHQ/blob/master/assets/cart.jpg" width="50" height="100"/>
 
 ### Demo
-Download and test the apk [here](https://github.com/dev-juri/BaseHQ/blob/master/assets/basehq-debug.apk).
+Download and test the apk [here](https://github.com/dev-juri/BaseHQ/blob/master/assets/basehq-debug.apk?raw=true).
 The minimum SDK required to run the apk is SDK 24 (Android Version 7).
 
 ### Architecture, Library and Tools
