@@ -1,9 +1,21 @@
-### Task Requirements
+### BaseHQ Marketplace
 
 1. Display Categories
 2. Display Products.
 3. Offline Cart (Add and Delete)
 4. Display Cart.
+
+### Screenshots
+
+<img src="https://github.com/dev-juri/BaseHQ/assets/category.jpg" width="48" height="80"/>
+<img src="https://github.com/dev-juri/BaseHQ/assets/products.jpg" width="48" height="80"/>
+<img src="https://github.com/dev-juri/BaseHQ/assets/details.jpg" width="48" height="80"/>
+<img src="https://github.com/dev-juri/BaseHQ/assets/cart.jpg" width="48" height="80"/>
+
+### Demo
+
+Download and test the apk [here](https://github.com/dev-juri/BaseHQ/assets/basehq-debug.apk).
+The minimum SDK required to run the apk is SDK 24 (Android Version 7).
 
 ### Architecture, Library and Tools
 
@@ -17,7 +29,6 @@
 8. Clean architecture, MVVM Repository pattern
 
 ### Architecture
-
 The app is built with the Model-View-ViewModel (MVVM) Architecture.
 MVVM is a software design pattern that separates the user interface from the underlying data layer.
 This makes it easier to develop and maintain complex applications.
@@ -29,21 +40,19 @@ understand.
 
 ### Structure
 
+```
 | - java
 | - - com
 | - - -oluwafemi
 | - - - - basehq
 | - - - - - adapter (contains Recyclerview adapters)
-| - - - - - data (contains folders and files responsible for fetching data from the API and
-interaction with the database)
+| - - - - - data (contains folders and files responsible for API requests and database interaction)
 | - - - - - di (contains Dependency modules)
 | - - - - - ui (contains the Views and ViewModel)
-| - - - - - utils (Contains utility methods, extension and helper functions for different use across
-the project).
-
-Download and test the apk here.
+| - - - - - utils (Contains utility methods, extension and helper functions for different use across the project).
+```
 
 ### Contributing
 
-Clone the project ```git clone https://github.com/dev-juri/BaseHQ.git ``` and build on Android
+Clone the project run ```git clone https://github.com/dev-juri/BaseHQ.git``` and build on Android
 Studio.
